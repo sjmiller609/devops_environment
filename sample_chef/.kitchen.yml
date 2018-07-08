@@ -1,0 +1,13 @@
+---
+
+platforms:
+- name: ubuntu
+  driver_config:
+    image: ubuntu:16.04
+    platform: ubuntu
+
+suites:
+  - name: default
+    run_list:
+      - recipe[sample_chef]
+    attributes: {}

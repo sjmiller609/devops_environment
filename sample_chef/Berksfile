@@ -1,0 +1,6 @@
+source "https://supermarket.chef.io"
+
+cookbook "openssl", "~> 8.1.2"
+cookbook "nginx", "~> 8.1.2"
+
+cookbook "sample_chef", path: "."

@@ -2,3 +2,6 @@ backup
 backup/*
 .vagrant
 .vagrant/*
+sample_chef/Berksfile.lock
+sample_chef/.kitchen
+sample_chef/.kitchen/*

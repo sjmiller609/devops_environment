@@ -14,9 +14,11 @@ fi
 if [ ! -d $DIR/backup ]; then
   mkdir $DIR/backup
 fi
-docker run -it \
+docker run -it --rm \
+  --network=host \
   -v $HOME/.gitconfig:/root/.gitconfig \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v $HOME/.ssh/:/root/.ssh/ \
   -v $DIR/backup:/root/backup \
+  -v $DIR/sample_chef:/root/samples/sample_chef \
   devops_kitchen_sink /bin/bash

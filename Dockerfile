@@ -48,7 +48,7 @@ RUN apt-get install -y ruby2.5 ruby2.5-dev
 
 # Install general development tools
 RUN apt-get install -y \
-    vim git nmap dtrx tree wget tmux
+    vim git nmap dtrx tree wget tmux net-tools
 
 # Install Amazon Web Services Command Line Interface
 RUN pip install boto boto3 awscli
@@ -77,6 +77,8 @@ RUN cd /root && git clone --depth=1 https://github.com/gpakosz/.tmux.git
 RUN ln -s -f /root/.tmux/.tmux.conf
 RUN cp /root/.tmux/.tmux.conf.local /root
 
-# This is where you should mount on host to backup repositories
-RUN mkdir /root/backup
-WORKDIR /root/backup
+WORKDIR /root
+
+# copy sample chef repo
+COPY sample_chef /root/samples/sample_chef
+

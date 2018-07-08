@@ -1,0 +1,13 @@
+---
+
+driver:
+  name: docker
+  binary: /usr/bin/docker
+  socket: unix:///var/run/docker.sock
+  use_sudo: false
+  forward:
+    - 8080:8080
+
+transport:
+  name: sftp
+
