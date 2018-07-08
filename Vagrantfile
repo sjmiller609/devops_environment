@@ -11,7 +11,12 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "ubuntu/trusty64"
   config.vm.synced_folder ".", "/vagrant", type: "nfs"
-  
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
+
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 4096
+    v.cpus = 4
+  end
 
   config.vm.provision "shell", inline: <<-SHELL
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
@@ -24,3 +29,4 @@ Vagrant.configure("2") do |config|
     usermod -aG docker vagrant
   SHELL
 end
+
