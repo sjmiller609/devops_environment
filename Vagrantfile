@@ -27,6 +27,7 @@ Vagrant.configure("2") do |config|
     apt-get update
     apt-get install -y docker-ce
     usermod -aG docker vagrant
+    docker build -t devops_kitchen_sink /vagrant
   SHELL
 end
 
