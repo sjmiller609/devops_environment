@@ -1,2 +1,4 @@
 backup
 backup/*
+.vagrant
+.vagrant/*
