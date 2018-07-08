@@ -61,10 +61,10 @@ RUN cp /opt/cagoinstall/cago-linux-amd64-v2.3.1.tar.gz /usr/local/bin
 
 # Install Chef Development Kit
 RUN mkdir -p /opt/chefdkinstall
-RUN cd /opt/chefdkinstall && wget https://packages.chef.io/files/stable/chefdk/2.4.17/ubuntu/16.04/chefdk_2.4.17-1_amd64.deb
-RUN dpkg -i /opt/chefdkinstall/chefdk_2.4.17-1_amd64.deb
+RUN cd /opt/chefdkinstall && wget https://packages.chef.io/files/stable/chefdk/3.1.0/ubuntu/18.04/chefdk_3.1.0-1_amd64.deb
+RUN dpkg -i /opt/chefdkinstall/chefdk_3.1.0-1_amd64.deb
 
-RUN chef gem install kitchen-sync kitchen-ec2 kitchen-docker
+RUN chef gem install kitchen-sync kitchen-ec2 kitchen-docker kitchen-dokken
 
 # Style terminal
 RUN git clone --depth=1 https://github.com/Bash-it/bash-it.git /root/.bash_it

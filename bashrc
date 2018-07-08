@@ -37,3 +37,5 @@ alias cagou='source /usr/local/bin/cago.sh unset'
 export TERM=xterm-256color
 export EDITOR=vim
 export VISUAL=vim
+
+export PATH=$PATH:/root/.chefdk/gem/ruby/2.5.0/bin

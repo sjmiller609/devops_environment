@@ -15,6 +15,7 @@ if [ ! -d $DIR/backup ]; then
   mkdir $DIR/backup
 fi
 docker run -it --rm \
+  --privileged \
   --network=host \
   -v $HOME/.gitconfig:/root/.gitconfig \
   -v /var/run/docker.sock:/var/run/docker.sock \

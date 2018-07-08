@@ -8,6 +8,12 @@ driver:
   forward:
     - 8080:8080
 
+platforms:
+- name: ubuntu
+  driver_config:
+    image: ubuntu:16.04
+    platform: ubuntu
+
 transport:
   name: sftp
 
