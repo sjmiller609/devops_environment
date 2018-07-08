@@ -15,7 +15,7 @@ if [ ! -d $DIR/backup ]; then
   mkdir $DIR/backup
 fi
 docker run -it \
-  -v /root/.gitconfig:/root/.gitconfig \
+  -v $HOME/.gitconfig:/root/.gitconfig \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v $HOME/.ssh/:/root/.ssh/ \
   -v $DIR/backup:/root/backup \
