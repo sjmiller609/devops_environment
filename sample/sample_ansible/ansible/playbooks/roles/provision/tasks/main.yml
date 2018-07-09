@@ -1,0 +1,66 @@
+---
+
+# This is idempotent
+#
+
+- name: Generate SSH key locally
+  shell: "ssh-keygen -b 2048 -t rsa -f ~/.ssh/{{ key_name }} -q -N ''"
+  args:
+    creates: "~/.ssh/{{ key_name }}"
+
+- name: Create AWS key pair using public key
+  ec2_key:
+    aws_access_key: "{{ aws_access_key_id }}"
+    aws_secret_key: "{{ aws_secret_access_key }}"
+    region: "{{ aws_region }}"
+    name: "{{ key_name }}"
+    key_material: "{{ lookup('file', '~/.ssh/' + key_name + '.pub') }}"
+    force: true
+
+- name: Create a security group
+  ec2_group:
+    aws_access_key: "{{ aws_access_key_id }}"
+    aws_secret_key: "{{ aws_secret_access_key }}"
+    name: "{{ sec_group_name }}"
+    description: "ssh and http"
+    region: "{{ aws_region }}"
+    vpc_id: "{{ vpc_id }}"
+    rules:
+      - proto: tcp
+        cidr_ip: 0.0.0.0/0
+        ports:
+          - 22
+          - 80
+          - 8080
+    rules_egress:
+      - proto: all
+        cidr_ip: 0.0.0.0/0
+  register: sec_group
+
+- name: Create one EC2 instance
+  ec2:
+    aws_access_key: "{{ aws_access_key_id }}"
+    aws_secret_key: "{{ aws_secret_access_key }}"
+    key_name: "{{ key_name }}"
+    region: "{{ aws_region }}"
+    group_id: "{{ sec_group.group_id }}"
+    instance_type: "{{ instance_type }}"
+    image: "{{ ami_id }}"
+    wait: yes
+    exact_count: 1
+    count_tag:
+       Name: steven-stelligent-demo
+    instance_tags:
+       Name: steven-stelligent-demo
+  register: ec2
+
+- name: Add instance to inventory
+  vars:
+    ip_address: "{{ ec2['tagged_instances'][0]['public_ip'] }}"
+    private_key_path: "~/.ssh/{{ key_name }}"
+  template:
+    src: demo.yml.j2
+    dest: "{{ playbook_dir }}/../inventory/demo.yml"
+
+- name: Print out IP address of server
+  debug: var=ec2['tagged_instances'][0]['public_ip']

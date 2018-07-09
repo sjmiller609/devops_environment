@@ -1,0 +1,42 @@
+---
+
+- name: Delete EC2 instance
+  ec2_instance:
+    state: absent
+    aws_access_key: "{{ aws_access_key_id }}"
+    aws_secret_key: "{{ aws_secret_access_key }}"
+    region: "{{ aws_region }}"
+    wait: yes
+    filters:
+       "tag:Name": steven-stelligent-demo
+
+- name: Delete AWS key pair using public key
+  ec2_key:
+    state: absent
+    aws_access_key: "{{ aws_access_key_id }}"
+    aws_secret_key: "{{ aws_secret_access_key }}"
+    region: "{{ aws_region }}"
+    name: "{{ key_name }}"
+
+- name: Delete security group
+  ec2_group:
+    state: absent
+    aws_access_key: "{{ aws_access_key_id }}"
+    aws_secret_key: "{{ aws_secret_access_key }}"
+    name: "{{ sec_group_name }}"
+    region: "{{ aws_region }}"
+    vpc_id: "{{ vpc_id }}"
+
+- name: Remove instance from inventory
+  file:
+    state: absent
+    path: "{{ playbook_dir }}/../inventory/demo.yml"
+
+- name: Delete local SSH key
+  file:
+    state: absent
+    path: "{{ item }}"
+  with_items:
+    - "~/.ssh/{{ key_name }}"
+    - "~/.ssh/{{ key_name }}.pub"
+

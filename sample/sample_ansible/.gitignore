@@ -1,0 +1,7 @@
+.vagrant
+.vagrant/*
+*.retry
+src/ansible/inventory/demo.yml
+testenv/*
+testenv
+vault_pass

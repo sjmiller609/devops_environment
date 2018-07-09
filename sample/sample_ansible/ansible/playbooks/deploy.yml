@@ -1,0 +1,7 @@
+---
+
+- hosts: steven-stelligent-demo
+  gather_facts: false
+  roles:
+    - nginx
+    - code_deploy

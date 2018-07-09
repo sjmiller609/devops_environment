@@ -1,0 +1,23 @@
+---
+
+- name: Wait for SSH connection to be available
+  wait_for_connection:
+    delay: 5
+    timeout: 120
+
+- name: Install epel-release
+  become: yes
+  yum:
+    name: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"
+
+- name: Install nginx
+  become: yes
+  yum:
+    name: nginx
+
+- name: Start and enable nginx
+  become: yes
+  service:
+    name: nginx
+    state: started
+    enabled: true

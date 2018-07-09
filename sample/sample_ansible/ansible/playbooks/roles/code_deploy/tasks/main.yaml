@@ -1,0 +1,13 @@
+---
+
+- name: Copy HTML into server
+  become: yes
+  vars:
+    title: "stelligent demo"
+    body: "Automation for the People"
+  template:
+    src: sample.html.j2
+    dest: /usr/share/nginx/html/index.html
+
+- name: Print out IP address of server
+  debug: var=ansible_host
