@@ -1,5 +1,18 @@
-deploy:
-  provider: script
-  script: bash docker_push
-  on:
-    branch: master
+
+language: python
+
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker info
+  - docker build -t sjmiller609/stelligent_development .
+
+script:
+  - pwd
+
+after_success:
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+  - docker push sjmiller609/stelligent_development
