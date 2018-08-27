@@ -1,4 +1,3 @@
-# kitchen-sink for devops development environment
 # Steven Miller
 
 FROM ubuntu:18.04
@@ -76,8 +75,4 @@ RUN cd /root && git clone --depth=1 https://github.com/gpakosz/.tmux.git
 RUN ln -s -f /root/.tmux/.tmux.conf
 RUN cp /root/.tmux/.tmux.conf.local /root
 
-WORKDIR /root
-
-# copy sample chef repo
-COPY sample /root/samples
-
+WORKDIR /root/shared

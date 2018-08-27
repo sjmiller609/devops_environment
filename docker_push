@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Exit on non-zero rc
+set -e
+
+# log into docker hub as steven
+# enviroment variables provided to Travis web GUI
+echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+# DIR is set to the directory of this bash script
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+docker build -t sjmiller609/stelligent_development $DIR
+docker push sjmiller609/stelligent_development

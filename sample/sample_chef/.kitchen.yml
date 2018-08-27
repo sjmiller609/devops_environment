@@ -1,7 +1,0 @@
----
-
-suites:
-  - name: default
-    run_list:
-      - recipe[sample_chef]
-    attributes: {}
