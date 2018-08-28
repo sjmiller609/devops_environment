@@ -3,7 +3,7 @@ export BASH_IT="$HOME/.bash_it"
 
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
-export BASH_IT_THEME='bobby'
+export BASH_IT_THEME='bakke'
 
 # Your place for hosting Git repos. I use this for private repos.
 export GIT_HOSTING='git@github.com'
@@ -39,3 +39,4 @@ export EDITOR=vim
 export VISUAL=vim
 
 export PATH=$PATH:/root/.chefdk/gem/ruby/2.5.0/bin
+export PS1="\u@\h \w> "

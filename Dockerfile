@@ -45,7 +45,7 @@ RUN apt-get install -y ruby2.5 ruby2.5-dev
 
 # Install general development tools
 RUN apt-get install -y \
-    vim git nmap dtrx tree wget tmux net-tools
+    vim git nmap dtrx tree wget tmux net-tools groff less
 
 # Install Amazon Web Services Command Line Interface
 RUN pip install boto boto3 awscli
