@@ -40,3 +40,7 @@ export VISUAL=vim
 
 export PATH=$PATH:/root/.chefdk/gem/ruby/2.5.0/bin
 export PS1="\u@\h \w> "
+
+if [ -f ~/shared/credentials ]; then
+  source ~/shared/credentials
+fi
