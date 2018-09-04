@@ -69,6 +69,7 @@ RUN git clone --depth=1 https://github.com/Bash-it/bash-it.git /root/.bash_it
 RUN /root/.bash_it/install.sh --silent --no-modify-config
 COPY bashrc /root/.bashrc
 # Style vim
+RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && vim +PlugInstall +qall &> /dev/null
 COPY vimrc /root/.vimrc
 # Style tmux
 RUN cd /root && git clone --depth=1 https://github.com/gpakosz/.tmux.git

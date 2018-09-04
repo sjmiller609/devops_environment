@@ -1,15 +1,3 @@
-" this chunk installs vim-polyglot if it's not installed
-" it will cause a loading pane to appear the first time you
-" start vim
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-call plug#begin('~/.vim/plugged')
-Plug 'sheerun/vim-polyglot'
-call plug#end()
-
 " Show line numbers
 set number
 
