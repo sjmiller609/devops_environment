@@ -62,7 +62,7 @@ RUN cd /opt/chefdkinstall && wget https://packages.chef.io/files/stable/chefdk/3
 RUN dpkg -i /opt/chefdkinstall/chefdk_3.1.0-1_amd64.deb
 
 RUN chef gem install kitchen-sync kitchen-ec2 kitchen-docker kitchen-dokken
-RUN pip install ansible testinfra requests
+RUN pip install ansible testinfra requests cfn-flip
 
 # Style terminal
 RUN git clone --depth=1 https://github.com/Bash-it/bash-it.git /root/.bash_it
