@@ -14,7 +14,7 @@ RUN apt-get update && \
 RUN apt-get update && apt-get install -y \
     apt-transport-https \
     ca-certificates \
-    curl \
+    curl iputils-ping \
     software-properties-common \
     build-essential libssl-dev libffi-dev
 
