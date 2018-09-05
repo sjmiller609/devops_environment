@@ -76,4 +76,5 @@ RUN cd /root && git clone --depth=1 https://github.com/gpakosz/.tmux.git
 RUN ln -s -f /root/.tmux/.tmux.conf
 RUN cp /root/.tmux/.tmux.conf.local /root
 
+RUN cp $(which aws_completer) /etc/bash_completion.d/aws_completer
 WORKDIR /root/shared

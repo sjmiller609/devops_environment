@@ -44,3 +44,5 @@ export PS1="\u@\h \w> "
 if [ -f ~/shared/credentials ]; then
   source ~/shared/credentials
 fi
+
+complete -C aws_completer aws
