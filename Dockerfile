@@ -11,7 +11,7 @@ RUN apt-get update && \
     
 # Install core
 # software-properties-common is necessary for "add-apt-repository"
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y man \
     apt-transport-https \
     ca-certificates \
     curl iputils-ping \
