@@ -64,17 +64,21 @@ RUN dpkg -i /opt/chefdkinstall/chefdk_3.1.0-1_amd64.deb
 RUN chef gem install kitchen-sync kitchen-ec2 kitchen-docker kitchen-dokken
 RUN pip install ansible testinfra requests cfn-flip
 
-# Style terminal
-RUN git clone --depth=1 https://github.com/Bash-it/bash-it.git /root/.bash_it
-RUN /root/.bash_it/install.sh --silent --no-modify-config
-COPY bashrc /root/.bashrc
-# Style vim
-RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && vim +PlugInstall +qall &> /dev/null
-COPY vimrc /root/.vimrc
 # Style tmux
 RUN cd /root && git clone --depth=1 https://github.com/gpakosz/.tmux.git
 RUN ln -s -f /root/.tmux/.tmux.conf
 RUN cp /root/.tmux/.tmux.conf.local /root
+
+# Style terminal
+RUN git clone --depth=1 https://github.com/Bash-it/bash-it.git /root/.bash_it
+RUN /root/.bash_it/install.sh --silent --no-modify-config
+COPY bashrc /root/.bashrc
+
+# configure vim
+COPY vimrc /root/.vimrc
+RUN mkdir -p /root/.vim/bundle && \
+  git clone https://github.com/VundleVim/Vundle.vim.git /root/.vim/bundle/Vundle.vim && \
+  vim -c 'PluginInstall' -c 'qa!'
 
 RUN cp $(which aws_completer) /etc/bash_completion.d/aws_completer
 WORKDIR /root/shared
