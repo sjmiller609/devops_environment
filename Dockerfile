@@ -36,7 +36,7 @@ RUN apt-get update && apt-get install -y \
     vim git nmap dtrx tree wget tmux net-tools groff less \
     ruby2.5 ruby2.5-dev \
     docker-ce \
-    lynx
+    links
 
 # Upgrade pip
 RUN pip install --upgrade pip setuptools
