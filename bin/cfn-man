@@ -1,4 +1,0 @@
-#!/bin/bash
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
-python $DIR/cfn_docs.py "$@" > /tmp/cfn-docs-temp.html && \
-links /tmp/cfn-docs-temp.html -dump | less && rm /tmp/cfn-docs-temp.html
