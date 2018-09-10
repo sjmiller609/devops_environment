@@ -32,6 +32,7 @@ RUN apt-get update && apt-get install -y \
     iputils-ping \
     software-properties-common \
     build-essential libssl-dev libffi-dev \
+    libxml2-dev libxslt1-dev \
     python-dev python-pip python-virtualenv \
     vim git nmap dtrx tree wget tmux net-tools groff less \
     ruby2.5 ruby2.5-dev \
