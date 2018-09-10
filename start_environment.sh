@@ -1,6 +1,7 @@
 if [ ! -d $HOME/development_backup ]; then
   mkdir $HOME/development_backup
 fi
+docker pull sjmiller609/stelligent_development:latest
 docker run -it --rm \
   -v $HOME/.gitconfig:/root/.gitconfig \
   -v /var/run/docker.sock:/var/run/docker.sock \
