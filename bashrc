@@ -46,3 +46,5 @@ if [ -f ~/shared/credentials ]; then
 fi
 
 complete -C aws_completer aws
+
+export PATH=/root/bin:$PATH

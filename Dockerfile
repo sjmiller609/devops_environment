@@ -35,12 +35,13 @@ RUN apt-get update && apt-get install -y \
     python-dev python-pip python-virtualenv \
     vim git nmap dtrx tree wget tmux net-tools groff less \
     ruby2.5 ruby2.5-dev \
-    docker-ce
+    docker-ce \
+    lynx
 
 # Upgrade pip
 RUN pip install --upgrade pip setuptools
 # Install pip modules
-RUN pip install boto boto3 awscli ansible testinfra requests cfn-flip
+RUN pip install boto boto3 awscli ansible testinfra requests cfn-flip lxml
 # Set up tab completion for AWS CLI
 RUN cp $(which aws_completer) /etc/bash_completion.d/aws_completer
 
@@ -76,5 +77,7 @@ COPY vimrc /root/.vimrc
 RUN mkdir -p /root/.vim/bundle && \
   git clone https://github.com/VundleVim/Vundle.vim.git /root/.vim/bundle/Vundle.vim && \
   vim -c 'PluginInstall' -c 'qa!'
+
+COPY bin /root/bin
 
 WORKDIR /root/shared
