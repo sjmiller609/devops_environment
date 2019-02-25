@@ -1,18 +1,34 @@
-
 language: python
+python:
+- 3.6
+- 3.5
+- 3.4
+- 2.7
 
 sudo: required
 
+install: pip install -U tox-travis
+
 services:
-  - docker
+- docker
 
 before_install:
-  - docker info
-  - docker build -t sjmiller609/stelligent_development .
+- docker info
+- docker build -t sjmiller609/stelligent_development ./images/devops
 
-script:
-  - pwd
+script: tox
+
+deploy:
+  provider: pypi
+  distributions: sdist bdist_wheel
+  user: sjmiller609
+  password:
+    secure: H7fUcRNSzgG925EJYzx9/kdrnleR003xcpogGTY3OM6p2JGgVcsSs6nOi8kTkiyDLmNOXJSTI+OPopQ2hsYhuxJsSnmLAr3oaVe0X790HHQfc32RwYwpykn/0Ph8fHPlP1iRhvtCRMexJ3BZQrFmdIy4iHRRNW44Q+T+4LSezeH/YisS1wR9HF2+ZrY6SS5jzWELfMbM2n9pcSB2NR3cam4QyyOPCDx//hIgKt3mTgO5DpnR/pVckLrWVL4Xy489aBj2LkPGTfmlXpQ5FxIiOYOOoiuuv5DX0cidYHqJEE2OA5PWDS02TnC14vtYRp1P+ihmA82+D8BfeZfWQImYa/PI+WU/rmBwpuBrSngiOkUyCViPLCo4PkgQCQgZsI6ga3HRw/FwtUwtd9V/NROniBN3B2WUI87Qg02LoXMVdHEr5A/5CuhVezJIOhJJM4Ipi6nw6/5+3hkxqbLnH0gCOdZeMYj/YatN9BxheejgzKeQ7s4RDubldMaUcdaaXdQSZYFVgkoD5BvGCCh9rnPZco1RpvR/xYCwwGXS99Cr4CDw4NmPtEf4ZbjQX5q8RkqkhU39ni3y9Mi1yD5WC6Yyng1dkr8PB0dG0EHvAaJX9El3WIg+a7VS4ZMYa1GjUBIHayPF2hvK/6AmTToOVs/TN3tktacanlj9b19sNCMXgzE=
+  on:
+    tags: true
+    repo: stelligent/devops_environment
+    python: 2.7
 
 after_success:
-  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-  - docker push sjmiller609/stelligent_development
+- docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+- docker push sjmiller609/stelligent_development

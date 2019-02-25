@@ -3,16 +3,13 @@
 """Console script for devops_environment."""
 import sys
 import click
+import devops_environment
 
 
 @click.command()
 def main(args=None):
     """Console script for devops_environment."""
-    click.echo("Replace this message by putting your code into "
-               "devops_environment.cli.main")
-    click.echo("See click documentation at http://click.pocoo.org/")
-    return 0
-
+    return devops_environment.main()
 
 if __name__ == "__main__":
     sys.exit(main())  # pragma: no cover
