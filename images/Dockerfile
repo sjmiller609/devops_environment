@@ -42,7 +42,7 @@ RUN apt-get update && apt-get install -y \
 # Upgrade pip
 RUN pip install --upgrade pip setuptools
 # Install pip modules
-RUN pip install boto boto3 awscli ansible testinfra requests cfn-flip twine cfn-man
+RUN pip install boto boto3 awscli ansible testinfra requests cfn-flip twine cfn-man cookiecutter
 # Set up tab completion for AWS CLI
 RUN cp $(which aws_completer) /etc/bash_completion.d/aws_completer
 
