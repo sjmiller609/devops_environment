@@ -1,16 +1,12 @@
 #!/bin/bash
 
+devops_environment setup
+
 # set up the environment
-devops_environment
+RUN_COMMAND=$(devops_environment print_run_command)
 
-echo "Starting interactive environment"
+echo "Starting interactive environment with command:\n$RUN_COMMAND"
 
-# interactively run the environment
-docker run -it --rm \
-  -v $HOME/.gitconfig:/root/.gitconfig \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v $HOME/.ssh/:/root/.ssh/ \
-  -v $HOME/development_backup:/root/shared \
-  sjmiller609/stelligent_development /bin/bash
+$RUN_COMMAND
 
 echo "Returning to calling shell. Done."

@@ -7,9 +7,15 @@ import devops_environment
 
 
 @click.command()
-def main(args=None):
+@click.argument('arg_name')
+def main(arg_name=None):
     """Console script for devops_environment."""
-    return devops_environment.main()
+    if arg_name == "setup":
+        return devops_environment.setup()
+    elif arg_name == "print_run_command":
+        return devops_environment.print_run_command()
+    else:
+        raise RuntimeError()
 
 if __name__ == "__main__":
     sys.exit(main())  # pragma: no cover

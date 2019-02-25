@@ -4,7 +4,10 @@
 
 import os
 import docker
-import subprocess
+
+home = os.environ.get("HOME")
+if not home:
+    home = "."
 
 def idempotent_make_backup_folder(directory=None):
     if not directory:
@@ -21,7 +24,17 @@ def pull_image(image='sjmiller609/stelligent_development', version="latest"):
     docker_client.images.pull(image, tag=version)
     print("Done pulling image.")
 
-def main():
+def print_run_command():
+    print("""
+    docker run -it --rm \
+      -v {home}/.gitconfig:/root/.gitconfig \
+      -v /var/run/docker.sock:/var/run/docker.sock \
+      -v {home}/.ssh/:/root/.ssh/ \
+      -v {home}/development_backup:/root/shared \
+      sjmiller609/stelligent_development /bin/bash
+    """.format(home=home))
+
+def setup():
     pull_image()
     idempotent_make_backup_folder()
     return 0
