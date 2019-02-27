@@ -15,7 +15,7 @@ requirements = ['Click>=6.0', 'docker==3.7.0']
 
 setup_requirements = ['pytest-runner', ]
 
-test_requirements = ['pytest', ]
+test_requirements = ['pytest', 'testinfra']
 
 setup(
     author="Steven Miller",

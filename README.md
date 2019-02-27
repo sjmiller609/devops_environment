@@ -1,19 +1,26 @@
-# Stelligent Development ![alt text](https://travis-ci.com/stelligent/devops_environment.svg?branch=master)
+# CLI Development ![alt text](https://travis-ci.com/stelligent/devops_environment.svg?branch=master)
 
-A repository with a development environment defined in a Dockerfile
+A Python module to manage a CLI development environment.
 
-# To share changes:
+You can pip install, then launch the same development environment on any machine with Docker.
 
-- Make a pull request to the master branch of this repository
-- Other users will get updates when they run "docker pull sjmiller609/stelligent_development:latest"
+# Installation:
 
-# To use:
+```
+pip install -U development_environment 
+```
+
+# Use:
+
+```
+devenv
+```
+
+# Recommendations:
 
 - Install Docker on host machine
 - Configure git on host machine
 - Set up ssh keys for git authentication in ~/.ssh/
-- Start environment (run the start_environment.sh script)
-- You don't need to clone this repository to use the image - see start_environment.sh script that uses public docker hub image 'sjmiller609/stelligent_development'
 
 # Custom commands:
 
