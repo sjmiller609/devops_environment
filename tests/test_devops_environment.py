@@ -3,18 +3,48 @@
 
 """Tests for `devops_environment` package."""
 
+import os
 import pytest
+import subprocess
+import testinfra
+from time import sleep
 
-from click.testing import CliRunner
+image = 'testimage'
 
-from devops_environment import devops_environment
-from devops_environment import cli
+this_directory = os.path.dirname(os.path.realpath(__file__))
+docker_path = os.path.join(
+    this_directory,
+    '..',
+    'images',
+    'devops'
+)
 
-def test_command_line_interface():
-    """Test the CLI."""
-    runner = CliRunner()
-    result = runner.invoke(cli.main)
-    assert result.exit_code == 0
-    help_result = runner.invoke(cli.main, ['--help'])
-    assert help_result.exit_code == 0
-    assert '--help  Show this message and exit.' in help_result.output
+# scope='session' uses the same container for all the tests;
+# scope='function' uses a new container per test function.
+@pytest.fixture(scope='session')
+def host(request):
+    # build local ./Dockerfile
+    subprocess.check_call(['docker', 'build', '-t', image, docker_path])
+    # run a container
+    docker_id = subprocess.check_output(
+        ['docker', 'run', '-d', image, '/bin/sleep','300']).decode().strip()
+    # return a testinfra connection to the container
+    yield testinfra.get_host("docker://" + docker_id)
+    # at the end of the test suite, destroy the container
+    subprocess.check_call(['docker', 'rm', '-f', docker_id])
+
+def test_vimrc(host):
+    vim_file = host.file("/root/.vimrc")
+    assert vim_file.contains("set")
+
+def test_in_path(host):
+
+    required_in_path = ['python',
+                        'python2',
+                        'python3',
+                        'pip',
+                        'virtualenv',
+                        'ansible']
+
+    for item in required_in_path:
+        assert host.exists(item), "Expected to find " + item + " in path"

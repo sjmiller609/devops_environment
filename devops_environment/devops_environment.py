@@ -25,30 +25,18 @@ def pull_image(image='sjmiller609/stelligent_development', version="latest"):
     docker_client.images.pull(image, tag=version)
     print("Done pulling image.")
 
-def _get_mount_commands_for_directories(directories):
+def _get_mount_if_present(mounts):
+    mount_command = ""
+    for mount in mounts:
+        if os.path.isfile(mount):
+            mount_command += "-v " + mount + " "
+    return mount_command.strip()
 
 def print_run_command():
-    directories = ["{}/.gitconfig".format(home),
+    mounts = ["{}/.gitconfig".format(home),
                    "{}/.ssh".format(home),
                    "/var/run/docker.socket"]
-    mount_commands = _get_mount_commands_for_directories(directories)
-
-    if not os.path.isfile(mount_git_config):
-        mount_git_config = ""
-    else:
-        mount_git_config = "-v " + mount_git_config
-
-    mount_ssh_config = "{}/.ssh".format(home)
-    if not os.path.isfile(mount_ssh_config):
-        mount_ssh_config = ""
-    else:
-        mount_ssh_config = "-v " + mount_ssh_config
-
-    mount_docker_socket = "/var/run/docker.sock"
-    if not os.path.isfile(mount_docker_socket):
-        mount_docker_socket = ""
-    else:
-        mount_docker_socket = "-v " + mount_docker_socket
+    mount_commands = _get_mount_if_present(mounts)
 
     print("""
     docker run -it --rm {mount_commands}

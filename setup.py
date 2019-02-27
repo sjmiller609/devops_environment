@@ -46,7 +46,7 @@ setup(
     keywords='devops_environment',
     name='devops_environment',
     packages=find_packages(include=['devops_environment']),
-    scripts=['bin/start_environment'],
+    scripts=['bin/devenv'],
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,

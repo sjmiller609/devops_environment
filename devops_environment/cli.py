@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
+"""
+Console script for devops_environment.
 
-"""Console script for devops_environment."""
+ARG_NAME:
+    'setup' or 'print_run_command'
+
+"""
 import sys
 import click
 import devops_environment
-
 
 @click.command()
 @click.argument('arg_name')
