@@ -11,11 +11,12 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['Click>=6.0', 'docker==3.7.0']
+with open('requirements.txt') as requirements_file:
+    requirements = requirements_file.read().strip().split()
 
 setup_requirements = ['pytest-runner', ]
 
-test_requirements = ['pytest', 'testinfra']
+test_requirements = ['pytest', ]
 
 setup(
     author="Steven Miller",

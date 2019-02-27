@@ -3,6 +3,10 @@
 
 """Tests for `devops_environment` package."""
 
+import os
+os.environ['LC_ALL'] = 'C.UTF-8'
+os.environ['LANG'] = 'C.UTF-8'
+
 import pytest
 
 from click.testing import CliRunner

@@ -26,28 +26,36 @@ Development environment for DevOps
 * Free software: MIT license
 * Documentation: https://devops-environment.readthedocs.io.
 
+A Python module to manage a CLI development environment.
 
-Features
---------
+You can pip install, then launch the same development environment on any machine with Docker.
 
-A repository with a development environment defined in a Dockerfile
+Installation
+------------
 
-# To share changes:
+```
+pip install -U development_environment 
+```
 
-- Make a pull request to the master branch of this repository
-- Other users will get updates when they run "docker pull sjmiller609/stelligent_development:latest"
+Use
+---
 
-# To use:
+```
+devenv
+```
+
+Recommendations
+---------------
 
 - Install Docker on host machine
 - Configure git on host machine
 - Set up ssh keys for git authentication in ~/.ssh/
-- Start environment (run the start_environment.sh script)
-- You don't need to clone this repository to use the image - see start_environment.sh script that uses public docker hub image 'sjmiller609/stelligent_development'
 
-# Custom commands:
+Custom commands
+---------------
 
 - cfn-man: Look up cloud formation docs from command line. Examples:
+
 ```
 # cfn-man, followed by what you want the docs for
 cfn-man security group
@@ -56,7 +64,9 @@ cfn-man auto scaling group
 # just type in whatever, it will probably work (powered by Google search)
 cfn-man asg
 cfn-man auato scaligng groudp
-`
+
+```
+
 Credits
 -------
 

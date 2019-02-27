@@ -10,6 +10,7 @@ import sys
 import click
 import devops_environment
 
+
 @click.command()
 @click.argument('arg_name')
 def main(arg_name=None):
@@ -20,6 +21,7 @@ def main(arg_name=None):
         return devops_environment.print_run_command()
     else:
         raise RuntimeError()
+
 
 if __name__ == "__main__":
     sys.exit(main())  # pragma: no cover
