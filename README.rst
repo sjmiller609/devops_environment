@@ -14,11 +14,6 @@ devops_environment
         :alt: Documentation Status
 
 
-.. image:: https://pyup.io/repos/github/sjmiller609/devops_environment/shield.svg
-     :target: https://pyup.io/repos/github/sjmiller609/devops_environment/
-     :alt: Updates
-
-
 
 Development environment for DevOps
 
