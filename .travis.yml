@@ -14,7 +14,7 @@ services:
 
 before_install:
 - docker info
-- docker build -t sjmiller609/stelligent_development ./images/devops
+- docker build -t sjmiller609/devops_environment ./images/devops
 
 script: tox
 
@@ -31,4 +31,4 @@ deploy:
 
 after_success:
 - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-- docker push sjmiller609/stelligent_development
+- docker push sjmiller609/devops_environment
