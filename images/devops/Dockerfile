@@ -37,7 +37,10 @@ RUN apt-get update && apt-get install -y \
     vim git nmap dtrx tree wget tmux net-tools groff less \
     ruby2.5 ruby2.5-dev \
     docker-ce \
-    links
+    links && \
+    apt-get install -y nodejs yarn npm
+
+RUN npm install terminalizer
 
 # Upgrade pip
 RUN pip install --upgrade pip setuptools
@@ -45,14 +48,6 @@ RUN pip install --upgrade pip setuptools
 RUN pip install boto boto3 awscli ansible testinfra requests cfn-flip twine cfn-man cookiecutter
 # Set up tab completion for AWS CLI
 RUN cp $(which aws_completer) /etc/bash_completion.d/aws_completer
-
-# Install Cago - helps manage AWS credentials
-RUN mkdir -p /opt/cagoinstall && \
-  cd /opt/cagoinstall && \
-  wget https://github.com/electric-it/cagophilist/releases/download/v2.3.1/cago-linux-amd64-v2.3.1.tar.gz && \
-  cd /opt/cagoinstall && \
-  dtrx /opt/cagoinstall/cago-linux-amd64-v2.3.1.tar.gz && \
-  cp /opt/cagoinstall/cago-linux-amd64-v2.3.1.tar.gz /usr/local/bin
 
 # Install Chef Development Kit
 RUN mkdir -p /opt/chefdkinstall && \
