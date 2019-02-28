@@ -19,7 +19,7 @@ def idempotent_make_backup_folder(directory=None):
         print("Using existing backup directory " + directory)
 
 
-def pull_image(image='sjmiller609/stelligent_development', version="latest"):
+def pull_image(image='sjmiller609/devops_environment', version="latest"):
     docker_client = docker.from_env()
     print("Pulling image " + image + ":" + version)
     docker_client.images.pull(image, tag=version)
@@ -44,7 +44,7 @@ def print_run_command():
     print("""
     docker run -it --rm {mount_commands}
       -v {home}/development_backup:/root/shared \
-      sjmiller609/stelligent_development /bin/bash
+      sjmiller609/devops_environment /bin/bash
     """.format(mount_commands=mount_commands, home=home))
 
 
