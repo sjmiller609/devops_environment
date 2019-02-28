@@ -28,7 +28,7 @@ You can pip install, then launch the same development environment on any machine
 Installation
 ------------
 
-``pip install -U development_environment``
+``pip install -U devops_environment``
 
 Use
 ---
