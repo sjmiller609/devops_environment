@@ -33,16 +33,12 @@ You can pip install, then launch the same development environment on any machine
 Installation
 ------------
 
-```
-pip install -U development_environment 
-```
+``pip install -U development_environment``
 
 Use
 ---
 
-```
-devenv
-```
+``devenv``
 
 Recommendations
 ---------------
@@ -54,18 +50,17 @@ Recommendations
 Custom commands
 ---------------
 
-- cfn-man: Look up cloud formation docs from command line. Examples:
+- cfn-man: Look up cloud formation docs from command line. Examples::
 
-```
-# cfn-man, followed by what you want the docs for
-cfn-man security group
-cfn-man auto scaling group
+  cfn-man security group
 
-# just type in whatever, it will probably work (powered by Google search)
-cfn-man asg
-cfn-man auato scaligng groudp
+  cfn-man auto scaling group
 
-```
+  cfn-man asg
+
+  cfn-man auato scaligng groudp
+
+Just type in whatever, it will probably work (powered by Google search)
 
 Credits
 -------
