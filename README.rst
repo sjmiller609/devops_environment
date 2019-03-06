@@ -19,7 +19,7 @@ Development environment for DevOps
 
 
 * Free software: MIT license
-* Documentation: https://devops-environment.readthedocs.io.
+* Documentation: https://devops-environment.readthedocs.io/en/latest/readme.html
 
 A Python module to manage a CLI development environment.
 
