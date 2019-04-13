@@ -77,4 +77,9 @@ RUN mkdir /opt/terraform_install && cd /opt/terraform_install && \
       unzip terraform_0.11.13_linux_amd64.zip && \
       mv terraform /usr/local/bin/
 
+# install kubectl
+RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
+      echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list && \
+      apt-get update && apt-get install -y kubectl
+
 WORKDIR /root/shared
