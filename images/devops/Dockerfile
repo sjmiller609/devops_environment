@@ -71,7 +71,7 @@ RUN mkdir -p /root/.vim/bundle && \
   git clone https://github.com/VundleVim/Vundle.vim.git /root/.vim/bundle/Vundle.vim && \
   vim -c 'PluginInstall' -c 'qa!'
 
-# install terraform
+# Install terraform
 RUN mkdir /opt/terraform_install && cd /opt/terraform_install && \
       wget https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip && \
       unzip terraform_0.11.13_linux_amd64.zip && \
@@ -86,5 +86,8 @@ RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add 
 RUN cd /usr/local/bin && \
       curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.12.7/2019-03-27/bin/linux/amd64/aws-iam-authenticator && \
       chmod +x aws-iam-authenticator
+
+# Install Helm
+RUN curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | /bin/bash
 
 WORKDIR /root/shared
