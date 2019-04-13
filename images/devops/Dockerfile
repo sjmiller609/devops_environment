@@ -37,10 +37,7 @@ RUN apt-get update && apt-get install -y \
     vim git nmap dtrx tree wget tmux net-tools groff less \
     ruby2.5 ruby2.5-dev \
     docker-ce \
-    links && \
-    apt-get install -y nodejs yarn npm
-
-RUN npm install terminalizer
+    links
 
 # Upgrade pip
 RUN pip install --upgrade pip setuptools
@@ -73,5 +70,11 @@ COPY vimrc /root/.vimrc
 RUN mkdir -p /root/.vim/bundle && \
   git clone https://github.com/VundleVim/Vundle.vim.git /root/.vim/bundle/Vundle.vim && \
   vim -c 'PluginInstall' -c 'qa!'
+
+# install terraform
+RUN mkdir /opt/terraform_install && cd /opt/terraform_install && \
+      wget https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip && \
+      unzip terraform_0.11.13_linux_amd64.zip && \
+      mv terraform /usr/local/bin/
 
 WORKDIR /root/shared

@@ -44,7 +44,8 @@ def test_in_path(host):
                         'python3',
                         'pip',
                         'virtualenv',
-                        'ansible']
+                        'ansible',
+                        'terraform']
 
     for item in required_in_path:
         assert host.exists(item), "Expected to find " + item + " in path"
