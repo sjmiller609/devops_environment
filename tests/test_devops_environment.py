@@ -46,7 +46,8 @@ def test_in_path(host):
                         'virtualenv',
                         'ansible',
                         'terraform',
-                        'kubectl']
+                        'kubectl',
+                        'aws-iam-authenticator']
 
     for item in required_in_path:
         assert host.exists(item), "Expected to find " + item + " in path"
