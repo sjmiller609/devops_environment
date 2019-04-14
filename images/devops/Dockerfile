@@ -77,10 +77,10 @@ RUN mkdir /opt/terraform_install && cd /opt/terraform_install && \
       unzip terraform_0.11.13_linux_amd64.zip && \
       mv terraform /usr/local/bin/
 
-# Install kubectl
-RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
-      echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list && \
-      apt-get update && apt-get install -y kubectl
+# Install kubectl 1.12
+RUN cd /usr/local/bin && \
+    curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.12.0/bin/linux/amd64/kubectl && \
+    chmod +x ./kubectl
 
 # Install aws-iam-authenticator
 RUN cd /usr/local/bin && \
