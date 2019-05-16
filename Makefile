@@ -1,4 +1,4 @@
-.PHONY: clean clean-test clean-pyc clean-build docs help
+.PHONY: clean clean-test clean-pyc clean-build docs help images
 .DEFAULT_GOAL := help
 
 define BROWSER_PYSCRIPT
@@ -53,8 +53,21 @@ clean-test: ## remove test and coverage artifacts
 lint: ## check style with flake8
 	flake8 devops_environment tests
 
+.ONESHELL:
+setup: ## run tests quickly with the default Python
+	if [ ! -d ./venv ]
+	then
+	virtualenv ./venv
+	fi
+	./venv/bin/pip install -r requirements.txt
+	./venv/bin/pip install -r requirements_dev.txt
+
+images: ## run tests quickly with the default Python
+	docker build -t sjmiller609/env_base ./images/base
+	docker build -t sjmiller609/env_astronomer ./images/astronomer
+
 test: ## run tests quickly with the default Python
-	py.test
+	PYTHONPATH=. ./venv/bin/python -m py.test
 
 test-all: ## run tests on every Python version with tox
 	tox

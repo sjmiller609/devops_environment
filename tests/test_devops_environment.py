@@ -9,22 +9,12 @@ import subprocess
 import testinfra
 from time import sleep
 
-image = 'testimage'
-
-this_directory = os.path.dirname(os.path.realpath(__file__))
-docker_path = os.path.join(
-    this_directory,
-    '..',
-    'images',
-    'devops'
-)
+image = 'sjmiller609/env_astronomer'
 
 # scope='session' uses the same container for all the tests;
 # scope='function' uses a new container per test function.
 @pytest.fixture(scope='session')
 def host(request):
-    # build local ./Dockerfile
-    subprocess.check_call(['docker', 'build', '-t', image, docker_path])
     # run a container
     docker_id = subprocess.check_output(
         ['docker', 'run', '-d', image, '/bin/sleep','300']).decode().strip()
@@ -39,9 +29,7 @@ def test_vimrc(host):
 
 def test_in_path(host):
 
-    required_in_path = ['python',
-                        'python2',
-                        'python3',
+    required_in_path = ['python3',
                         'pip',
                         'virtualenv',
                         'ansible',

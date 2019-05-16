@@ -14,7 +14,7 @@ services:
 
 before_install:
 - docker info
-- docker build -t sjmiller609/devops_environment ./images/devops
+- make images
 
 script: tox
 
@@ -31,4 +31,5 @@ deploy:
 
 after_success:
 - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-- docker push sjmiller609/devops_environment
+- docker push sjmiller609/env_base
+- docker push sjmiller609/env_astronomer
