@@ -45,17 +45,7 @@ Recommendations
 Custom commands
 ---------------
 
-- cfn-man: Look up cloud formation docs from command line. Examples::
-
-  cfn-man security group
-
-  cfn-man auto scaling group
-
-  cfn-man asg
-
-  cfn-man auato scaligng groudp
-
-Just type in whatever, it will probably work (powered by Google search)
+- cfn-man: Look up cloud formation docs from command line.
 
 Credits
 -------
