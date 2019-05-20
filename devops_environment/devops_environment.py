@@ -39,6 +39,7 @@ def print_run_command():
     mounts = [
         "{}/.gitconfig".format(home),
         "{}/.ssh".format(home),
+        "{}/.aws".format(home),
         "/var/run/docker.sock"
     ]
     mount_commands = _get_mount_if_present(mounts)
