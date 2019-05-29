@@ -23,6 +23,7 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
 # Update since we just installed repos
 # Install apt pacakges
 RUN apt-get install -y \
+    sudo \
     man \
     iputils-ping \
     software-properties-common \
@@ -32,20 +33,28 @@ RUN apt-get install -y \
     python3-pip && \
     pip3 install --upgrade pip setuptools virtualenv
 
-# Style tmux
-RUN cd /root && git clone --depth=1 https://github.com/gpakosz/.tmux.git && \
-  ln -s -f /root/.tmux/.tmux.conf && \
-  cp /root/.tmux/.tmux.conf.local /root
+ENV USER=developer
+ENV HOME=/home/$USER
+RUN useradd -m -d $HOME $USER && \
+    mkdir -p /etc/sudoers.d && \
+    echo "$USER ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/$USER
+
+USER $USER
+
+RUN cd && \
+    git clone --depth=1 https://github.com/gpakosz/.tmux.git && \
+    ln -s -f .tmux/.tmux.conf && \
+    cp .tmux/.tmux.conf.local .
 
 # Style terminal
-RUN git clone --depth=1 https://github.com/Bash-it/bash-it.git /root/.bash_it && \
-  /root/.bash_it/install.sh --silent --no-modify-config
-COPY bashrc /root/.bashrc
+RUN git clone --depth=1 https://github.com/Bash-it/bash-it.git $HOME/.bash_it && \
+  $HOME/.bash_it/install.sh --silent --no-modify-config
+COPY bashrc $HOME/.bashrc
 
 # Configure vim
-COPY vimrc /root/.vimrc
-RUN mkdir -p /root/.vim/bundle && \
-  git clone https://github.com/VundleVim/Vundle.vim.git /root/.vim/bundle/Vundle.vim && \
+COPY vimrc $HOME/.vimrc
+RUN mkdir -p $HOME/.vim/bundle && \
+  git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim && \
   vim -c 'PluginInstall' -c 'qa!'
 
-WORKDIR /root/shared
+WORKDIR $HOME/shared
