@@ -24,7 +24,7 @@ def host(request):
     subprocess.check_call(['docker', 'rm', '-f', docker_id])
 
 def test_vimrc(host):
-    vim_file = host.file("/root/.vimrc")
+    vim_file = host.file("/home/developer/.vimrc")
     assert vim_file.contains("set")
 
 def test_in_path(host):

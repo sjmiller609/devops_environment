@@ -38,6 +38,7 @@ ENV HOME=/home/$USER
 RUN useradd -m -d $HOME $USER && \
     mkdir -p /etc/sudoers.d && \
     echo "$USER ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/$USER
+RUN usermod -aG docker $USER
 
 USER $USER
 
