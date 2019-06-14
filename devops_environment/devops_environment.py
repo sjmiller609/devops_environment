@@ -31,7 +31,7 @@ def _get_mount_if_present(mounts):
     mount_command = ""
     for mount in mounts:
         if os.path.isfile(mount) or os.path.isdir(mount) or os.path.islink(mount):
-            mount_command += "-v " + mount + ":" + mount.replace(home, '/root').replace("~",'/root') + " "
+            mount_command += "-v " + mount + ":" + mount.replace(home, '/home/developer').replace("~",'/home/developer') + " "
     return mount_command.strip()
 
 
@@ -46,7 +46,7 @@ def print_run_command():
 
     print("""
     docker run -it --rm {mount_commands}
-      -v {home}/development_backup:/root/shared \
+      -v {home}/development_backup:/home/developer/shared \
       sjmiller609/env_astronomer /bin/bash
     """.format(mount_commands=mount_commands, home=home))
 
